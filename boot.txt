@@ -1,1 +1,12 @@
-chain http://ipxeboot.github.io/tinycore7/boot64.txt
+#!ipxe
+
+menu
+item core core
+item core2 core2
+
+:core
+chain http://evagelosvar.github.io/IPXE-SYSTEM/tiny384/boot64.txt
+
+
+:core2
+chain http://evagelosvar.github.io/IPXE-SYSTEM/microcore64/boot64.txt
