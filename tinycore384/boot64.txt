@@ -15,7 +15,7 @@ kernel bzImage quiet ramdisk_size=10000 text  kmap=qwerty/gr-pc lang=el_GR
 #kernel bzImage quiet ramdisk_size=10000 text   xvesa=800x600x16 xsetup vga=788 xvesa=800x600x16  
 
 initrd tinycore.gz
-initrd tce.tar /opt/tce.tar
+#initrd tce.tar /opt/tce.tar
 initrd cm.txt /opt/cm.txt
 initrd rdp /home/tc/rdp
 initrd en /home/tc/en
