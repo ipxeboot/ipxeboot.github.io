@@ -3,8 +3,9 @@
 menu 
 
 item tinycore384 tinycore384
-item shell shell-timeout 3000 target && goto ${target}
+item shell shell
 
+choose --default exit --timeout 30000 target && goto ${target}
 
 
 :tinycore384
