@@ -22,6 +22,6 @@ sudo sed -i -e 's/tcp//' /home/tc/.xsession
 
 startx
 
-aterm -e sh -c 'xmodmap /home/tc/gr;(echo "Welcome";echo -e "\r";sleep 10;echo $USER;echo -e "\r";sleep 3;echo "123456"; echo -e "\r";sleep 3;echo "ls";echo -e "\r";sleep 13;echo "export DISPLAY=$getLocIP:0";echo -e "\r";sleep 3;echo "gnome-panel";echo -e "\r";sleep 555)|telnet 192.168.1.
+aterm -e sh -c `xmodmap /home/tc/gr;(echo "Welcome";echo -e "\r";sleep 10;echo $USER;echo -e "\r";sleep 3;echo "123456"; echo -e "\r";sleep 3;echo "ls";echo -e "\r";sleep 13;echo "export DISPLAY=$getLocIP:0";echo -e "\r";sleep 3;echo "gnome-panel";echo -e "\r";sleep 555)|telnet 192.168.1.1`
 
 
