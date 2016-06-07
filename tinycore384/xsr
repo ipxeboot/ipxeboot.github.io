@@ -5,6 +5,7 @@ getLocIP=`ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`
 
 USER=user01
 PASS=12345678
+VGA="800x600x16"
 
 export getSerIP=$getSerIP;
 export getLocIP=$getLocIP;
