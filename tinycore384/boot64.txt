@@ -17,10 +17,11 @@ kernel bzImage
 initrd tinycore.gz
 ##initrd tce.tar /opt/tce.tar
 ##initrd cm.txt /opt/cm.txt
-##initrd rdp /home/tc/rdp
 initrd en		/tmp/en
 initrd gr		/tmp/gr
+initrd menu		/tmp/menu
 initrd xsr		/tmp/xsr
+initrd rdp		/tmp/rdp
 initrd bootlocal.sh	/opt/bootlocal.sh mode=755
 ##initrd configFile.txt /configFile.txt
 ##initrd Arialbd.ttf /usr/share/fonts/Arialbd.ttf mode 755
