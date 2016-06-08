@@ -18,10 +18,10 @@ initrd tinycore.gz
 ##initrd tce.tar /opt/tce.tar
 ##initrd cm.txt /opt/cm.txt
 ##initrd rdp /home/tc/rdp
-##initrd en /home/tc/en
-##initrd gr /home/tc/gr
-initrd xsr /tmp/xsr
-initrd bootlocal.sh /opt/bootlocal.sh mode=755
+initrd en		/tmp/en
+initrd gr		/tmp/gr
+initrd xsr		/tmp/xsr
+initrd bootlocal.sh	/opt/bootlocal.sh mode=755
 ##initrd configFile.txt /configFile.txt
 ##initrd Arialbd.ttf /usr/share/fonts/Arialbd.ttf mode 755
 
