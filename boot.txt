@@ -5,7 +5,7 @@ item core core
 item core2 core2
 
 :core
-chain http://ipxeboot.github.io/tinycore384/boot64.txt
+chain http://ipxeboot.github.io/tinycore384GIT/boot64.txt
 
 
 :core2
