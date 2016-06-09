@@ -1,16 +1,29 @@
 #!/bin/sh
 
-getSerIP=192.168.1.111
-getLocIP=`ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`
+#=====================
+#WAIT FOR NETWORK (I MUST EXAMINE)
+#=====================
+count=0
+echo -n Waiting for the network...
+while [ "$count" -lt 60 ]; 
+do
+        ifconfig eth0 | grep -q inet && break
+        #sleep 1
+        count=$((count + 1))
+        echo -n .
+done
 
+#===========================================
+
+
+getSerIP=192.168.1.111
+
+getLocIP=`ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`
+echo $getLocIP
 USER=user01
-PASS=12345678
+PASS=123456
 VGA="800x600x16"
 
-export getSerIP=$getSerIP;
-export getLocIP=$getLocIP;
-export USER=$USER
-export PASS=$PASS
 
 #=====================
 #REMOTE DISPLAY & SCREEN ANALYSIS
@@ -21,8 +34,19 @@ sudo sed -i -e 's/-nolisten/-ac/' /home/tc/.xsession
 sudo sed -i -e 's/tcp//' /home/tc/.xsession
 
 
-startx
+#=====================
+#EXPORT VARIABLES FOR ATERM
+#=====================
+export getSerIP=$getSerIP;
+export getLocIP=$getLocIP;
+export USER=$USER;
+export PASS=$PASS;
 
-aterm -e sh -c `xmodmap /home/tc/gr;(echo "Welcome";echo -e "\r";sleep 10;echo $USER;echo -e "\r";sleep 3;echo $PASS; echo -e "\r";sleep 3;echo "ls";echo -e "\r";sleep 13;echo "export DISPLAY=$getLocIP:0";echo -e "\r";sleep 3;echo "gnome-panel";echo -e "\r";sleep 555)|telnet $getSerIP`
+
+startx
+aterm -e sh -c '(echo "Welcome";echo -e "\r";sleep 10;echo $USER;echo -e "\r";sleep 3;echo $PASS; echo -e "\r";sleep 3;echo "ls";echo -e "\r";sleep 13;echo "export DISPLAY=$getLocIP:0";echo -e "\r";sleep 3;echo "lxpanel";echo -e "\r";sleep 555)|telnet $getSerIP'
+#aterm -e sh -c 'killall Xvesa';
+
+
 
 

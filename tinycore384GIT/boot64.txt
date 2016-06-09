@@ -2,18 +2,18 @@
 
 menu 
 
-item tinycore384 tinycore384
+item tinycore384GT tinycore384GT
 item shell shell
 
 choose --default exit --timeout 30000 target && goto ${target}
 
 
-:tinycore384
+:tinycore384GT
 #kernel bzImage quiet ramdisk_size=10000
 ##kernel bzImage quiet ramdisk_size=10000 text  kmap=qwerty/gr-pc lang=el_GR
 #kernel bzImage quiet ramdisk_size=10000 text xvesa=800x600x16 kmap=qwerty/gr-pc lang=el_GR
 #kernel bzImage quiet ramdisk_size=10000 text   xvesa=800x600x16 xsetup vga=788 xvesa=800x600x16  
-kernel bzImage
+kernel bzImage noicons
 initrd tinycore.gz
 ##initrd tce.tar /opt/tce.tar
 ##initrd cm.txt /opt/cm.txt

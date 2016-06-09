@@ -1,0 +1,22 @@
+#!ipxe
+
+menu 
+
+item ipxegit ipxegit
+item plopkexec plopkexec
+item shell shell
+
+choose --default exit --timeout 0 target && goto ${target}
+
+:plopkexec
+kernel memdisk iso raw
+initrd plopkexec.iso
+boot
+
+:ipxegit
+kernel memdisk iso raw
+initrd ipxegit.iso
+boot
+
+:shell
+shell

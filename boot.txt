@@ -1,8 +1,14 @@
 #!ipxe
 
 menu
+item tinycore384GITlocal tinycore384GITlocal
 item core core
 item core2 core2
+
+choose --default exit --timeout 3000 target && goto ${target}
+
+:tinycore384GITlocal
+chain http://192.168.1.111/ipxeboot.github.io/tinycore384GIT/boot64.txt
 
 :core
 chain http://ipxeboot.github.io/tinycore384GIT/boot64.txt
