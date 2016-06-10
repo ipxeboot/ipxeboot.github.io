@@ -5,7 +5,7 @@ menu
 item tinycore384GT tinycore384GT
 item shell shell
 
-choose --default exit --timeout 30000 target && goto ${target}
+choose --default exit --timeout 3000 target && goto ${target}
 
 
 :tinycore384GT
@@ -13,7 +13,7 @@ choose --default exit --timeout 30000 target && goto ${target}
 ##kernel bzImage quiet ramdisk_size=10000 text  kmap=qwerty/gr-pc lang=el_GR
 #kernel bzImage quiet ramdisk_size=10000 text xvesa=800x600x16 kmap=qwerty/gr-pc lang=el_GR
 #kernel bzImage quiet ramdisk_size=10000 text   xvesa=800x600x16 xsetup vga=788 xvesa=800x600x16  
-kernel bzImage noicons
+kernel bzImage quiet noicons text
 initrd tinycore.gz
 ##initrd tce.tar /opt/tce.tar
 ##initrd cm.txt /opt/cm.txt
@@ -23,6 +23,7 @@ initrd menu		/tmp/menu
 initrd xsr		/tmp/xsr
 initrd rdp		/tmp/rdp
 initrd bootlocal.sh	/opt/bootlocal.sh mode=755
+initrd bootsync.sh	/opt/bootsync.sh mode=755
 ##initrd configFile.txt /configFile.txt
 ##initrd Arialbd.ttf /usr/share/fonts/Arialbd.ttf mode 755
 

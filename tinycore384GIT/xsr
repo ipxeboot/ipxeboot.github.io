@@ -8,18 +8,20 @@ echo -n Waiting for the network...
 while [ "$count" -lt 60 ]; 
 do
         ifconfig eth0 | grep -q inet && break
-        #sleep 1
+        sleep 1
         count=$((count + 1))
         echo -n .
 done
 
 #===========================================
 
+#echo "Please type 'sh /tmp/menu' in order to get the menu"
+
 
 getSerIP=192.168.1.111
 
 getLocIP=`ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`
-echo $getLocIP
+#echo $getLocIP
 USER=user01
 PASS=123456
 VGA="800x600x16"
@@ -42,11 +44,22 @@ export getLocIP=$getLocIP;
 export USER=$USER;
 export PASS=$PASS;
 
+#sh /tmp/menu
+#exit
 
 startx
-aterm -e sh -c '(echo "Welcome";echo -e "\r";sleep 10;echo $USER;echo -e "\r";sleep 3;echo $PASS; echo -e "\r";sleep 3;echo "ls";echo -e "\r";sleep 13;echo "export DISPLAY=$getLocIP:0";echo -e "\r";sleep 3;echo "lxpanel";echo -e "\r";sleep 555)|telnet $getSerIP'
+
+
+#aterm -g 50x50+10+10 -e sh -c 'read -p "Input Telnet Username=" USER;read -p "Input Telnet Password=" PASS;(echo " Welcome Please Wait...";echo -e "\r";sleep 10;echo $USER;echo -e "\r";sleep 3;echo $PASS; echo -e "\r";sleep 3;echo "ls";echo -e "\r";sleep 13;echo "export DISPLAY=$getLocIP:0";echo -e "\r";sleep 3;echo "lxpanel";echo -e "\r";sleep 555)|telnet $getSerIP'
 #aterm -e sh -c 'killall Xvesa';
 
+count=0
+while [ "$count" -lt 60 ]; 
+do
+	aterm -g 50x50+10+10 -e sh -c 'read -p "Input Telnet Username=" USER;read -p "Input Telnet Password=" PASS;(echo " Welcome Please Wait...";echo -e "\r";sleep 10;echo $USER;echo -e "\r";sleep 3;echo $PASS; echo -e "\r";sleep 3;echo "ls";echo -e "\r";sleep 13;echo "export DISPLAY=$getLocIP:0";echo -e "\r";sleep 3;echo "lxpanel";echo -e "\r";sleep 555)|telnet $getSerIP'     
 
+	sleep 1
+        count=$((count + 1))
 
+done
 
