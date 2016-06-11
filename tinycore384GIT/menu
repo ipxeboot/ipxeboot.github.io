@@ -63,5 +63,7 @@ while true
 do
  
 	show_menus
+sleep 2
 	read_options
+
 done

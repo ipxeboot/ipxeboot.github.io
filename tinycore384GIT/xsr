@@ -1,16 +1,61 @@
 #!/bin/sh
+read_options(){
+	local choice
+	read -p "Enter choice [ 1 - 3] " choice
+	case $choice in
+		1) XSRmenu ;;
+		2) RDPmenu ;;
+		3) exit 0;;
+		*) echo -e "${RED}Error...${STD}" && sleep 2
+	esac
+}
+
+Conmenu() {
+	clear
+	echo "~~~~~~~~~~~~~~~~~~~~~"	
+	echo " M A I N - M E N U"
+	echo "~~~~~~~~~~~~~~~~~~~~~"
+	echo "1. X Connection (The linux Server must have installed Telnet Server and the Lxpanel)"
+	echo "2. RDP Connection"
+	echo "3. Exit"
+
+
+
+#############################################################################
+
+
+}
+XSRmenu() {
+count=0
+while [ "$count" -lt 60 ]; 
+do
+aterm -g 50x50+10+10 -e sh -c 'read -p "Input Telnet Username=" USER;read -p "Input Telnet Password=" PASS;(echo " Welcome Please Wait...";echo -e "\r";sleep 10;echo $USER;echo -e "\r";sleep 3;echo $PASS; echo -e "\r";sleep 3;echo "ls";echo -e "\r";sleep 13;echo "export DISPLAY=$getLocIP:0";echo -e "\r";sleep 3;echo "lxpanel";echo -e "\r";sleep 555)|telnet $getSerIP'     
+sleep 1
+count=$((count + 1))
+done
+}
+RDPmenu() {
+count=0
+while [ "$count" -lt 60 ]; 
+do
+aterm -g 50x50+10+10 -e sh -c 'echo $getSerIP;read -p "Input RDP SERVER Username=" USER;read -p "Input RDP SERVER Password=" PASS;rdesktop -f -p $PASS -u $USER $getSerIP'
+sleep 1
+count=$((count + 1))
+done
+}
+
 
 #=====================
 #WAIT FOR NETWORK (I MUST EXAMINE)
 #=====================
 count=0
-echo -n Waiting for the network...
+#echo -n Waiting for the network...
 while [ "$count" -lt 60 ]; 
 do
-        ifconfig eth0 | grep -q inet && break
-        sleep 1
-        count=$((count + 1))
-        echo -n .
+ifconfig eth0 | grep -q inet && break
+sleep 1
+count=$((count + 1))
+echo -n .
 done
 
 #===========================================
@@ -44,22 +89,45 @@ export getLocIP=$getLocIP;
 export USER=$USER;
 export PASS=$PASS;
 
-#sh /tmp/menu
-#exit
+
+
+
+#wait five sec
+count=0
+while [ "$count" -lt 5 ]; 
+do
+sleep 1
+count=$((count + 1))
+echo -n .
+done
+
+
+
+
+ 
+Conmenu
 
 startx
 
+TYPE=XSR
+################################################
+case $TYPE in
+#=====================================
+XSR)
+XSRmenu	;;
+#=====================================
+RDP)
+RDPmenu ;;
+#=====================================
+* )
+echo Wrong Connection Type ;;
+esac
+################################################
 
-#aterm -g 50x50+10+10 -e sh -c 'read -p "Input Telnet Username=" USER;read -p "Input Telnet Password=" PASS;(echo " Welcome Please Wait...";echo -e "\r";sleep 10;echo $USER;echo -e "\r";sleep 3;echo $PASS; echo -e "\r";sleep 3;echo "ls";echo -e "\r";sleep 13;echo "export DISPLAY=$getLocIP:0";echo -e "\r";sleep 3;echo "lxpanel";echo -e "\r";sleep 555)|telnet $getSerIP'
-#aterm -e sh -c 'killall Xvesa';
 
-count=0
-while [ "$count" -lt 60 ]; 
-do
-	aterm -g 50x50+10+10 -e sh -c 'read -p "Input Telnet Username=" USER;read -p "Input Telnet Password=" PASS;(echo " Welcome Please Wait...";echo -e "\r";sleep 10;echo $USER;echo -e "\r";sleep 3;echo $PASS; echo -e "\r";sleep 3;echo "ls";echo -e "\r";sleep 13;echo "export DISPLAY=$getLocIP:0";echo -e "\r";sleep 3;echo "lxpanel";echo -e "\r";sleep 555)|telnet $getSerIP'     
 
-	sleep 1
-        count=$((count + 1))
 
-done
+
+
+
 
