@@ -19,11 +19,8 @@ initrd tinycore.gz
 ##initrd cm.txt /opt/cm.txt
 initrd en		/tmp/en
 initrd gr		/tmp/gr
-initrd menu		/tmp/menu
 initrd xsr		/tmp/xsr
-initrd rdp		/tmp/rdp
 initrd bootlocal.sh	/opt/bootlocal.sh mode=755
-initrd bootsync.sh	/opt/bootsync.sh mode=755
 ##initrd configFile.txt /configFile.txt
 ##initrd Arialbd.ttf /usr/share/fonts/Arialbd.ttf mode 755
 
