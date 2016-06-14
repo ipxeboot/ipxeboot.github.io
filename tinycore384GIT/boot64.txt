@@ -21,6 +21,7 @@ initrd en		/tmp/en
 initrd gr		/tmp/gr
 initrd xsr		/tmp/xsr
 initrd bootlocal.sh	/opt/bootlocal.sh mode=755
+initrd bootsync.sh	/opt/bootsync.sh mode=755
 ##initrd configFile.txt /configFile.txt
 ##initrd Arialbd.ttf /usr/share/fonts/Arialbd.ttf mode 755
 

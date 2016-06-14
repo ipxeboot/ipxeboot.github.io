@@ -12,8 +12,8 @@ read_options(){
 	case $choice in
 		1) XSRmenu ;;
 		2) RDPmenu ;;
-		3) exit 0;;
-		*) echo -e "${RED}Error...${STD}" && sleep 2
+		*) killall Xvesa;;
+
 	esac
 }
 
@@ -33,7 +33,7 @@ show_menu() {
 XSRmenu() {
 
 
-read -p "Input Telnet Username = " USER;read -p "Input Telnet Password = " PASS;(echo " Welcome Please Wait...";echo -e "\r";sleep 10;echo $USER;echo -e "\r";sleep 3;echo $PASS; echo -e "\r";sleep 3;echo "export DISPLAY=$getLocIP:0";echo -e "\r";sleep 3;echo "lxpanel";echo -e "\r";sleep 555)|telnet $getSerIP || exit 0
+read -p "Input Telnet Username = " USER;read -p "Input Telnet Password = " PASS;(echo " Welcome Please Wait...";echo -e "\r";sleep 10;echo $USER;echo -e "\r";sleep 3;echo $PASS; echo -e "\r";sleep 3;echo "export DISPLAY=$getLocIP:0";echo -e "\r";sleep 3;echo "lxpanel";echo -e "\r";sleep 555)|telnet $getSerIP  || exit 0
 }
 
 RDPmenu() {
