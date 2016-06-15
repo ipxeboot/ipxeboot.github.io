@@ -1,5 +1,36 @@
 #!/bin/sh
 
+#=====================
+#WAIT FOR NETWORK (I MUST EXAMINE)
+#=====================
+count=0
+#echo -n Waiting for the network...
+while [ "$count" -lt 60 ]; 
+do
+ifconfig eth0 | grep -q inet && break
+sleep 1
+count=$((count + 1))
+echo -n .
+done
+
+#===========================================
+
+
+
+VGA="800x600x16"
+sudo sed -i -e 's/1024x768x32/'$VGA'/' /home/tc/.xsession
+sudo sed -i -e 's/-nolisten/-ac/' /home/tc/.xsession
+sudo sed -i -e 's/tcp//' /home/tc/.xsession
+
+
+getSerIP=192.168.1.111
+getLocIP=`ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`
+#USER=user01
+#PASS=123456
+USER=user01
+PASS=123456
+
+#aterm -e sh -c 'hsetroot -full /opt/backgrounds/win10.jpg;xmodmap /home/tc/en'
 
 read_options(){
 	local choice
@@ -12,7 +43,7 @@ read_options(){
 	case $choice in
 		1) XSRmenu ;;
 		2) RDPmenu ;;
-		*) killall Xvesa;;
+		*) killall Xvesa;kill $(ps aux | grep "telnet" | awk '{print $1 }');;
 
 	esac
 }
@@ -32,55 +63,40 @@ show_menu() {
 
 XSRmenu() {
 
+startx
+aterm -e sh -c 'hsetroot -full /opt/backgrounds/win10.jpg;xmodmap /home/tc/en'
+
+(echo " Welcome Please Wait...";echo -e "\r";sleep 10;echo $USER;echo -e "\r";sleep 3;echo $PASS; echo -e "\r";sleep 3;echo "export DISPLAY=$getLocIP:0";echo -e "\r";sleep 3;echo "lxpanel";echo -e "\r";sleep 555)|telnet $getSerIP  || exit 0
+
+}
+
+
+xXSRmenu() {
+
 
 read -p "Input Telnet Username = " USER;read -p "Input Telnet Password = " PASS;(echo " Welcome Please Wait...";echo -e "\r";sleep 10;echo $USER;echo -e "\r";sleep 3;echo $PASS; echo -e "\r";sleep 3;echo "export DISPLAY=$getLocIP:0";echo -e "\r";sleep 3;echo "lxpanel";echo -e "\r";sleep 555)|telnet $getSerIP  || exit 0
 }
+
+
+
 
 RDPmenu() {
 echo $getSerIP;read -p "Input RDP SERVER Username = " USER;read -p "Input RDP SERVER Password = " PASS;rdesktop -f -p $PASS -u $USER $getSerIP || exit 0
 }
 
 
-#=====================
-#WAIT FOR NETWORK (I MUST EXAMINE)
-#=====================
+
+
+#show_menu
+#read_options
 count=0
-#echo -n Waiting for the network...
 while [ "$count" -lt 60 ]; 
 do
-ifconfig eth0 | grep -q inet && break
-sleep 1
-count=$((count + 1))
-echo -n .
-done
-
-#===========================================
-
-
-
-
-getSerIP=192.168.1.111
-getLocIP=`ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`
-#USER=user01
-#PASS=123456
-
-
-
-#wait five sec
-echo "Please wait"
-count=0
-while [ "$count" -lt 5 ]; 
-do
-sleep 1
-count=$((count + 1))
-echo -n .
-done
-
-
 show_menu
 read_options
-
-
+sleep 1
+count=$((count + 1))
+done
 
 
 
