@@ -1,4 +1,29 @@
 #!/bin/sh
+createCron(){
+	echo "" 				> /home/tc/log
+
+	echo "count=0;" 			> /home/tc/cron
+	echo "while [ $""count -lt 60 ];"	>> /home/tc/cron
+	echo "do"				>> /home/tc/cron
+ 	echo "echo "tettt45t45t"" 		>> /home/tc/cron
+	echo "pidof  Xvesa >/dev/null" 		>> /home/tc/cron
+	echo "if [[ $""? -ne 0 ]];"		>> /home/tc/cron
+	echo "then"				>> /home/tc/cron
+        echo "echo telnet >> /home/tc/log" 	>> /home/tc/cron
+       	#echo "kill $(ps aux | grep "telnet" | awk '{print $1 }')"  >> /home/tc/cron
+	echo "kill $""(pidof telnet)"  		>> /home/tc/cron
+	echo "echo -e '\r'"			>> /home/tc/cron
+	echo "exit 0"				>> /home/tc/cron
+	echo "fi"				>> /home/tc/cron
+	echo "sleep 10"				>> /home/tc/cron
+	echo "done"				>> /home/tc/cron
+}
+
+
+
+createCron
+
+
 
 #=====================
 #WAIT FOR NETWORK (I MUST EXAMINE)
@@ -64,6 +89,9 @@ show_menu() {
 XSRmenu() {
 
 startx
+
+sh /home/tc/cron&
+
 aterm -e sh -c 'hsetroot -full /opt/backgrounds/win10.jpg;xmodmap /home/tc/en'
 
 (echo " Welcome Please Wait...";echo -e "\r";sleep 10;echo $USER;echo -e "\r";sleep 3;echo $PASS; echo -e "\r";sleep 3;echo "export DISPLAY=$getLocIP:0";echo -e "\r";sleep 3;echo "lxpanel";echo -e "\r";sleep 555)|telnet $getSerIP  || exit 0
