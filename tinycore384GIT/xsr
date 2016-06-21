@@ -1,5 +1,56 @@
 #!/bin/sh
 
+langMenu (){
+#============================
+#LANGUAGE MENU
+#============================
+
+sudo echo "[Desktop Entry]"						>/home/tc/tinycore-gr.desktop
+sudo echo "Name=aGR"							>>/home/tc/tinycore-gr.desktop
+sudo echo "Exec=aterm -e xmodmap /home/tc/gr" 	>>/home/tc/tinycore-gr.desktop
+sudo echo "Type=Application"					>>/home/tc/tinycore-gr.desktop
+sudo echo "OnlyShowIn=Old;" 					>>/home/tc/tinycore-gr.desktop
+#sudo echo "Categories=lSystem;" 				>>/home/tc/tinycore-gr.desktop
+
+sudo echo "[Desktop Entry]"						>/home/tc/tinycore-en.desktop
+sudo echo "Name=aEN"							>>/home/tc/tinycore-en.desktop
+sudo echo "Exec=aterm -e xmodmap /home/tc/en" 	>>/home/tc/tinycore-en.desktop
+sudo echo "Type=Application" 					>>/home/tc/tinycore-en.desktop
+sudo echo "OnlyShowIn=Old;" 					>>/home/tc/tinycore-en.desktop
+#sudo echo "Categories=lSystem;" 				>>/home/tc/tinycore-en.desktop
+
+
+
+sudo chmod 775 /usr/share/applications
+sudo mv /home/tc/tinycore-gr.desktop /usr/share/applications/tinycore-gr.desktop
+sudo mv /home/tc/tinycore-en.desktop /usr/share/applications/tinycore-en.desktop
+#sudo desktop.sh xtinycore-sysinfo.desktop
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 trap "echo 'Please do not do this'" HUP INT TERM TSTP QUIT
