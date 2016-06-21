@@ -16,13 +16,11 @@ choose --default exit --timeout 3000 target && goto ${target}
 
 kernel bzImage quiet noicons text
 initrd tinycore.gz
-
-initrd en		/tmp/en
-initrd gr		/tmp/gr
-
-initrd bootlocal.sh	/opt/bootlocal.sh mode=755
+initrd en		/home/tc/en
+initrd gr		/home/tc/gr
 initrd xsr		/home/tc/xsr
-initrd win10.jpg /opt/backgrounds/win10.jpg
+initrd bootlocal.sh	/opt/bootlocal.sh mode=755
+initrd win10.jpg 	/opt/backgrounds/win10.jpg
 
 ##initrd tce.tar /opt/tce.tar
 ##initrd cm.txt /opt/cm.txt

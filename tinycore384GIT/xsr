@@ -1,6 +1,6 @@
 #!/bin/sh
 
-langMenu (){
+createLangMenu (){
 #============================
 #LANGUAGE MENU
 #============================
@@ -20,41 +20,27 @@ sudo echo "OnlyShowIn=Old;" 					>>/home/tc/tinycore-en.desktop
 #sudo echo "Categories=lSystem;" 				>>/home/tc/tinycore-en.desktop
 
 
+#PUT the language selection in system tools
+#sudo chmod 775 /usr/share/applications
+#sudo mv /home/tc/tinycore-gr.desktop /usr/share/applications/tinycore-gr.desktop
+#sudo mv /home/tc/tinycore-en.desktop /usr/share/applications/tinycore-en.desktop
 
-sudo chmod 775 /usr/share/applications
-sudo mv /home/tc/tinycore-gr.desktop /usr/share/applications/tinycore-gr.desktop
-sudo mv /home/tc/tinycore-en.desktop /usr/share/applications/tinycore-en.desktop
+
+#PUT the language selection in appkications
+cd /usr/local
+sudo mkdir share
+cd share
+sudo mkdir applications
+sudo chmod 775 /usr/local/share/applications
+sudo mv /home/tc/tinycore-gr.desktop /usr/local/share/applications/tinycore-gr.desktop
+sudo mv /home/tc/tinycore-en.desktop /usr/local/share/applications/tinycore-en.desktop
+
+
 #sudo desktop.sh xtinycore-sysinfo.desktop
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-trap "echo 'Please do not do this'" HUP INT TERM TSTP QUIT
-
+#===========================================
 
 createCron(){
 	echo "" 				> /home/tc/log
@@ -88,8 +74,8 @@ createCron(){
 	echo "sleep 10"				>> /home/tc/cron
 	echo "done"				>> /home/tc/cron
 }
-createCron
 
+#===========================================
 
 staticIP() {
 sudo pkill udhcpc
@@ -98,15 +84,33 @@ sudo route add default gw 192.168.1.1
 #sudo echo nameserver 8.8.8.8 > /etc/resolv.conf
 #sudo echo nameserver 8.8.4.4 >> /etc/resolv.conf
 }
-
+#===========================================
 
 getXSRmenuConf(){
+echo "to accept the default configuration user=user01 and password=123456 linux-serverIP=192.168.1.111 press return for each option"
 
 read -p "Enter Username = " USER
 read -p "Enter Password = " PASS
-USER=user01
-PASS=123456
-XSRmenu $USER $PASS
+read -p "Enter Server IP = " getSerIP
+rtn='
+'
+if [ $USER ==  $rtn ]
+	then
+	USER=user01
+fi
+
+if [ $PASS ==  $rtn ]
+	then
+	PASS=123456
+fi
+
+
+if [ $getSerIP ==  $rtn ]
+	then
+	getSerIP=192.168.1.111
+fi
+	
+XSRmenu $USER $PASS $getSerIP
 }
 
 #===========================================
@@ -126,7 +130,7 @@ readOptions(){
 
 	esac
 }
-
+#===========================================
 
 showMenu() {
 	clear
@@ -146,39 +150,69 @@ showMenu() {
 	
 }
 
-#############################################################################
+#===========================================
 
 XSRmenu() {
 USER=$1
 PASS=$2
+getSerIP=$3
 startx
 
 sh cron &
 
 aterm -e sh -c 'hsetroot -full /opt/backgrounds/win10.jpg;xmodmap /home/tc/en'
 
-(echo " Welcome Please Wait...";echo -e "\r";sleep 10;echo $USER;echo -e "\r";sleep 3;echo $PASS; echo -e "\r";sleep 3;echo "export DISPLAY=$getLocIP:0";echo -e "\r";sleep 3;echo "lxpanel";echo -e "\r";sleep 555)|telnet $getSerIP >/dev/null &
+(echo " Welcome Please Wait...";echo -e "\r";sleep 10;echo $USER;echo -e "\r";sleep 3;echo $PASS; echo -e "\r";sleep 3;echo "export DISPLAY=$getLocIP:0";echo -e "\r";sleep 3;echo "lxpanel";echo -e "\r";sleep 60000)|telnet $getSerIP >/dev/null &
 
 }
 
-
+#===========================================
 
 RDPmenu() {
 echo $getSerIP;read -p "Input RDP SERVER Username = " USER;read -p "Input RDP SERVER Password = " PASS;rdesktop -f -p $PASS -u $USER $getSerIP || exit 0
 }
 
+#===========================================
+
+allowXConnection(){
+sudo sed -i -e 's/-nolisten/-ac/' /home/tc/.xsession
+sudo sed -i -e 's/tcp//' /home/tc/.xsession
+}
+
+changeResolution(){
+VGA=$1
+sudo sed -i -e 's/1024x768x32/'$VGA'/' /home/tc/.xsession
+}
 
 
 
 
 
 
-############################################
-##############################################
-###############################################
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+########################################################################################
+#MAIN PROGRAM
+########################################################################################
+VGA="800x600x16"
+#getSerIP=192.168.1.111
+trap "echo 'Please do not do this'" HUP INT TERM TSTP QUIT
+createLangMenu
+changeResolution $VGA
+allowXConnection
+createCron
 
 
 #=====================
@@ -193,53 +227,29 @@ sleep 1
 count=$((count + 1))
 echo -n .
 done
-
-
-
-
-
-VGA="800x600x16"
-sudo sed -i -e 's/1024x768x32/'$VGA'/' /home/tc/.xsession
-sudo sed -i -e 's/-nolisten/-ac/' /home/tc/.xsession
-sudo sed -i -e 's/tcp//' /home/tc/.xsession
-
-
-getSerIP=192.168.1.111
 getLocIP=`ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`
-#USER=user01
-#PASS=123456
-#USER=user01
-#PASS=123456
+
+
+
+
+
 
 #aterm -e sh -c 'hsetroot -full /opt/backgrounds/win10.jpg;xmodmap /home/tc/en'
 
 
 
 
-
-#showMenu
-#readOptions
-
-
-#exit
-
-
-
+#=============================================
+#endless loop for initial screen choice
 #=============================================
 count=0
 while [ "$count" -lt 60 ]; 
 do
-
-
-
 showMenu
 readOptions
 sleep 1
 #count=$((count + 1))
 done
-
-
-
 
 
 
