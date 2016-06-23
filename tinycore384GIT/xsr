@@ -22,11 +22,11 @@ sudo echo "OnlyShowIn=Old;" 					>>/home/tc/tinycore-en.desktop
 
 #PUT the language selection in system tools
 	#sudo chmod 775 /usr/share/applications
-	#sudo mv /home/tc/tinycore-gr.desktop /usr/share/applications/tinycore-gr.desktop
+	#sudo mv /home/tontrol sequencesc/tinycore-gr.desktop /usr/share/applications/tinycore-gr.desktop
 	#sudo mv /home/tc/tinycore-en.desktop /usr/share/applications/tinycore-en.desktop
 
 
-#PUT the language selection in appkications
+#PUT the language selection in applications menu
 sudo mkdir -p /usr/local/share/applications
 sudo chmod 775 /usr/local/share/applications
 sudo mv /home/tc/tinycore-gr.desktop /usr/local/share/applications/tinycore-gr.desktop
@@ -133,15 +133,18 @@ showMenu() {
 				#NC='\033[0m' # No Color
 				#echo "I $REDlove$NC Stack Overflow\n"
 				
-				echo '\033[0;31m' "hhhhhhhhhhh"
-
-	echo "             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"	
-	echo "                         M A I N - M E N U             "
-	echo "             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-	echo "                         1. X Connection               "
-	echo "(The linux Server must have installed Telnet Server and the Lxpanel)"
-	echo "                         2. RDP Connection             "
-	echo "     (The linux Server must have installed VirtualBox Machines"
+				#echo $'\033[0;31m' "hhhhhhhhhhh"
+				
+				yel=$'\033[0;33m'
+				whi=$'\033[0;0m'
+				
+	echo 	 "             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"	
+	echo $yel"                         M A I N - M E N U             "
+	echo $whi"             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+	echo $yel"                         1. X Connection               "
+	echo $whi"(The linux Server must have installed Telnet Server and the Lxpanel)"
+	echo $yel"                         2. RDP Connection             "
+	echo $whi"     (The linux Server must have installed VirtualBox Machines"
 	echo "               or you have a Windows Terminal Server)"
 	#echo "3. Exit"
 	
