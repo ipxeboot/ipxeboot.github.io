@@ -160,9 +160,12 @@ startx
 
 sh cron &
 
-aterm -e sh -c 'hsetroot -full /opt/backgrounds/win10.jpg;xmodmap /home/tc/en'
-
+aterm -e sh -c 'hsetroot -fill /opt/backgrounds/win10.jpg;xmodmap /home/tc/en'
+#lxpanel
 (echo " Welcome Please Wait...";echo -e "\r";sleep 10;echo $USER;echo -e "\r";sleep 3;echo $PASS; echo -e "\r";sleep 3;echo "export DISPLAY=$getLocIP:0";echo -e "\r";sleep 3;echo "lxpanel";echo -e "\r";sleep 60000)|telnet $getSerIP >/dev/null &
+
+#xfce4-panel
+#(echo " Welcome Please Wait...";echo -e "\r";sleep 10;echo $USER;echo -e "\r";sleep 3;echo $PASS; echo -e "\r";sleep 3;echo "export DISPLAY=$getLocIP:0";echo -e "\r";sleep 3;echo "xfce4-panel";echo -e "\r";sleep 60000)|telnet $getSerIP >/dev/null &
 
 }
 
