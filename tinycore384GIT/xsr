@@ -1,4 +1,6 @@
 #!/bin/sh
+. /etc/init.d/tc-functions
+
 
 createLangMenu (){
 #============================
@@ -129,23 +131,18 @@ readOptions(){
 
 showMenu() {
 	clear
-				#RED='\033[0;31m'
-				#NC='\033[0m' # No Color
-				#echo "I $REDlove$NC Stack Overflow\n"
+	
+#yel=$'\033[0;33m'
+#whi=$'\033[0;0m'
 				
-				#echo $'\033[0;31m' "hhhhhhhhhhh"
-				
-				yel=$'\033[0;33m'
-				whi=$'\033[0;0m'
-				
-	echo 	 "             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"	
-	echo $yel"                         M A I N - M E N U             "
-	echo $whi"             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-	echo $yel"                         1. X Connection               "
-	echo $whi"(The linux Server must have installed Telnet Server and the Lxpanel)"
-	echo $yel"                         2. RDP Connection             "
-	echo $whi"     (The linux Server must have installed VirtualBox Machines"
-	echo "               or you have a Windows Terminal Server)"
+	echo ${WHITE}	"             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"	
+	echo ${GREEN}	"                         M A I N - M E N U             "
+	echo ${WHITE}	"             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+	echo ${YELLOW}	"                         1. X Connection               "
+	echo ${WHITE}	"(The linux Server must have installed Telnet Server and the Lxpanel)"
+	echo ${YELLOW}	"                         2. RDP Connection             "
+	echo ${WHITE}	"     (The linux Server must have installed VirtualBox Machines"
+	echo ${WHITE}	"               or you have a Windows Terminal Server)"
 	#echo "3. Exit"
 	
 }
@@ -190,34 +187,16 @@ sudo sed -i -e 's/1024x768x32/'$VGA'/' /home/tc/.xsession
 
 
 
+configSysMenu(){
+	
+	
+	sudo mv /usr/share/applications/tinycore-aterm.desktop  /usr/share/applications/tinycore-aterm
+	sudo rm -rf /usr/share/applications/*.desktop  >/dev/null
+	sudo mv /usr/share/applications/tinycore-aterm  /usr/share/applications/tinycore-aterm.desktop
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-########################################################################################
-#MAIN PROGRAM
-########################################################################################
-VGA="800x600x16"
-#getSerIP=192.168.1.111
-trap "echo 'Please do not do this'" HUP INT TERM TSTP QUIT
-createLangMenu
-changeResolution $VGA
-allowXConnection
-createCron
-
-
+checkNet(){
 #=====================
 #WAIT FOR NETWORK (I MUST EXAMINE)
 #=====================
@@ -232,8 +211,25 @@ echo -n .
 done
 getLocIP=`ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`
 
+}
 
 
+
+
+########################################################################################
+#MAIN PROGRAM
+########################################################################################
+
+
+VGA="800x600x16"
+#getSerIP=192.168.1.111
+trap "echo 'Please do not do this'" HUP INT TERM TSTP QUIT
+configSysMenu
+createLangMenu
+changeResolution $VGA
+allowXConnection
+createCron
+checkNet
 
 
 
