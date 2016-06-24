@@ -1,25 +1,25 @@
 #!/bin/sh
 . /etc/init.d/tc-functions
-
+#(echo 77 ; sleep 1) | Xdialog --progress 8 20 100
 
 createLangMenu (){
 #============================
 #LANGUAGE MENU
 #============================
 
-sudo echo "[Desktop Entry]"						>/home/tc/tinycore-gr.desktop
-sudo echo "Name=aGR"							>>/home/tc/tinycore-gr.desktop
-sudo echo "Exec=aterm -e xmodmap /home/tc/gr" 	>>/home/tc/tinycore-gr.desktop
-sudo echo "Type=Application"					>>/home/tc/tinycore-gr.desktop
-sudo echo "OnlyShowIn=Old;" 					>>/home/tc/tinycore-gr.desktop
-#sudo echo "Categories=lSystem;" 				>>/home/tc/tinycore-gr.desktop
+sudo echo "[Desktop Entry]"									>/home/tc/tinycore-gr.desktop
+sudo echo "Name=aGR"										>>/home/tc/tinycore-gr.desktop
+sudo echo "Exec=aterm -e xmodmap /home/tc/gr" 				>>/home/tc/tinycore-gr.desktop
+sudo echo "Type=Application"								>>/home/tc/tinycore-gr.desktop
+#sudo echo "OnlyShowIn=Old;" 								>>/home/tc/tinycore-gr.desktop
+sudo echo "Categories=Utility;" 							>>/home/tc/tinycore-gr.desktop
 
-sudo echo "[Desktop Entry]"						>/home/tc/tinycore-en.desktop
-sudo echo "Name=aEN"							>>/home/tc/tinycore-en.desktop
-sudo echo "Exec=aterm -e xmodmap /home/tc/en" 	>>/home/tc/tinycore-en.desktop
-sudo echo "Type=Application" 					>>/home/tc/tinycore-en.desktop
-sudo echo "OnlyShowIn=Old;" 					>>/home/tc/tinycore-en.desktop
-#sudo echo "Categories=lSystem;" 				>>/home/tc/tinycore-en.desktop
+sudo echo "[Desktop Entry]"									>/home/tc/tinycore-en.desktop
+sudo echo "Name=aEN"										>>/home/tc/tinycore-en.desktop
+sudo echo "Exec=aterm -e xmodmap /home/tc/en" 				>>/home/tc/tinycore-en.desktop
+sudo echo "Type=Application" 								>>/home/tc/tinycore-en.desktop
+#sudo echo "OnlyShowIn=Old;" 								>>/home/tc/tinycore-en.desktop
+sudo echo "Categories=Utility;" 							>>/home/tc/tinycore-en.desktop
 
 
 #PUT the language selection in system tools
@@ -31,10 +31,9 @@ sudo echo "OnlyShowIn=Old;" 					>>/home/tc/tinycore-en.desktop
 #PUT the language selection in applications menu
 sudo mkdir -p /usr/local/share/applications
 sudo chmod 775 /usr/local/share/applications
+
 sudo mv /home/tc/tinycore-gr.desktop /usr/local/share/applications/tinycore-gr.desktop
 sudo mv /home/tc/tinycore-en.desktop /usr/local/share/applications/tinycore-en.desktop
-
-
 
 }
 #===========================================
