@@ -1,5 +1,6 @@
 #!/bin/sh
 . /etc/init.d/tc-functions
+. /usr/bin/flwm_topside_menu_common
 #(echo 77 ; sleep 1) | Xdialog --progress 8 20 100
 
 createLangMenu (){
