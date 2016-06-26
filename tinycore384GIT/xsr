@@ -177,6 +177,17 @@ allowXConnection(){
 sudo sed -i -e 's/-nolisten/-ac/' /home/tc/.xsession
 sudo sed -i -e 's/tcp//' /home/tc/.xsession
 }
+testMenu(){
+TARGET="$HOME"/.wmx/Applications
+
+for F in $(ls); do
+      writeFLWMitem "$F"
+    done
+[ -G /tmp/.X11-unix/X0 ] && [ $(which "$DESKTOP"_restart) ] && "$DESKTOP"_restart
+
+}
+
+
 
 changeResolution(){
 VGA=$1
@@ -218,7 +229,7 @@ getLocIP=`ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`
 ########################################################################################
 #MAIN PROGRAM
 ########################################################################################
-
+testMenu
 
 VGA="800x600x16"
 #getSerIP=192.168.1.111
