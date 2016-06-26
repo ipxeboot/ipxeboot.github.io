@@ -179,13 +179,13 @@ sudo sed -i -e 's/-nolisten/-ac/' /home/tc/.xsession
 sudo sed -i -e 's/tcp//' /home/tc/.xsession
 }
 testMenu(){
-TARGET="$HOME"/.wmx/Applications
+#TARGET="$HOME"/.wmx/Applications
 
-for F in $(ls); do
-      writeFLWMitem "$F"
-    done
-[ -G /tmp/.X11-unix/X0 ] && [ $(which "$DESKTOP"_restart) ] && "$DESKTOP"_restart
-
+#for F in $(ls); do
+    #  writeFLWMitem "$F"
+   # done
+#[ -G /tmp/.X11-unix/X0 ] && [ $(which "$DESKTOP"_restart) ] && "$DESKTOP"_restart
+sudo sed -i -e 's/.wmx\/Applications/.wmx\/Lang/' /usr/bin/flwm_topside_makemenu
 }
 
 
