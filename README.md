@@ -8,7 +8,7 @@ Using tinycore384GIT you can setup Linux Terminal Services very easy.
 
 The tinycore384GIT is a modified distro from tinycore 384.
 
-Booting the modified iPXE iso tinycore384GIT is downloaded and run on your computer. The modification is done on the fly. The main script that does the job on the fly ( when tinycore384GIT login the tc user ) is the XSR.
+Booting the modified iPXE iso http://ipxeboot.github.io/booting/iso/ipxegit.iso  tinycore384GIT is downloaded and run on your computer. The modification is done on the fly. The main script that does the job on the fly ( when tinycore384GIT login the tc user ) is the XSR.
 
 #Prerequisites for succes
 a) one Computer named A that runs linux ( Ubuntu or Mint )...i used these distros...
