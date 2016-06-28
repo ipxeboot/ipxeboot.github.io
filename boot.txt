@@ -2,17 +2,17 @@
 
 menu
 item tinycore384GITlocal tinycore384GITlocal
-item core core
-item core2 core2
+item tinycore384GITonline tinycore384GITonline
+item test test
 
 choose --default exit --timeout 3000 target && goto ${target}
 
 :tinycore384GITlocal
 chain http://192.168.1.111/ipxeboot.github.io/tinycore384GIT/boot64.txt
 
-:core
+:tinycore384GITonline
 chain http://ipxeboot.github.io/tinycore384GIT/boot64.txt
 
 
-:core2
+:test
 chain http://evagelosvar.github.io/IPXE-SYSTEM/microcore64/boot64.txt
