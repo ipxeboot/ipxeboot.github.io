@@ -4,7 +4,7 @@ menu
 item tinycore384GITlocal tinycore384GITlocal
 item tinycore384GITonline tinycore384GITonline
 item test test
-item test1 test1
+item school school
 choose --default exit --timeout 3000 target && goto ${target}
 
 :tinycore384GITlocal
@@ -17,5 +17,5 @@ chain http://ipxeboot.github.io/tinycore384GIT/boot64.txt
 :test
 chain http://evagelosvar.github.io/IPXE-SYSTEM/microcore64/boot64.txt
 
-:test1
-chain http://evagelosvar.github.io/IPXE-SYSTEM/microcore64/boot64.txt
+:school
+chain http://school.graeca.tk/docs/menu.txt
