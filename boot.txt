@@ -18,4 +18,4 @@ chain http://ipxeboot.github.io/tinycore384GIT/boot64.txt
 chain http://evagelosvar.github.io/IPXE-SYSTEM/microcore64/boot64.txt
 
 :school
-chain http://school.graeca.tk/docs/menu.txt
+chain http://school.graeca.tk/docs/ipxe/menu.txt
