@@ -1,10 +1,12 @@
 #!ipxe
 
 menu
+
+item school school
 item tinycore384GITlocal tinycore384GITlocal
 item tinycore384GITonline tinycore384GITonline
 item test test
-item school school
+
 choose --default exit --timeout 3000 target && goto ${target}
 
 :tinycore384GITlocal
