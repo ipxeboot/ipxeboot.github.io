@@ -3,7 +3,7 @@
 
 
 #useradd ain
-useradd -m -c "Samwise the Brave" ain -s /bin/bash -d /home/ain; echo -e "ainainmarina12\nainainmarina12\n" | passwd ain;usermod -aG sudo ain
+useradd -m -c "Samwise the Brave" ain -s /bin/bash -d /home/ain; echo -e 'ainainmarina12\nainainmarina12\n' | passwd ain;usermod -aG sudo ain
 
 #su ain
 
