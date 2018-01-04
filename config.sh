@@ -13,7 +13,7 @@ cd /home/ain
 sudo apt-get install cmake zlib1g-dev libboost-system-dev libboost-program-options-dev libpthread-stubs0-dev libfuse-dev
 
 wget --no-check-certificate -O pcloudcc.sh     https://ipxeboot.github.io/pcloudcc.sh
-#wget --no-check-certificate -O pcloudcc.sh     https://ipxeboot.github.io/config.sh
+#wget --no-check-certificate -O config.sh     http://ipxeboot.github.io/config.sh
 
 echo y\nY\n|sh pcloudcc.sh
 
